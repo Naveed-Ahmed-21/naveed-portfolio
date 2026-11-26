@@ -1,0 +1,926 @@
+/* ==========================================================================
+   Hero Section — Mobile in Motion Device Portal
+   ========================================================================== */
+
+.heroSection {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: calc(var(--header-height) + clamp(0.75rem, 2vw, 1.5rem));
+  padding-bottom: clamp(2rem, 3.5vw, 3.25rem);
+  background-color: var(--bg-primary, #F5F3ED);
+  overflow: hidden;
+}
+
+/* Ambient backdrop radiance */
+.ambientGlow {
+  position: absolute;
+  top: 5%;
+  right: -5%;
+  width: clamp(320px, 50vw, 750px);
+  height: clamp(320px, 50vw, 750px);
+  background: radial-gradient(
+    circle,
+    rgba(232, 237, 229, 0.85) 0%,
+    rgba(217, 191, 163, 0.3) 40%,
+    rgba(82, 116, 90, 0.08) 65%,
+    transparent 80%
+  );
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2.5rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+@media (min-width: 980px) {
+  .grid {
+    grid-template-columns: 1.15fr 0.95fr;
+  }
+}
+
+/* ==========================================================================
+   Left Column: Content & Typography
+   ========================================================================== */
+
+.contentCol {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  z-index: 2;
+}
+
+/* Technical System Stamp */
+.systemStamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.stampDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--color-primary, #52745A);
+  box-shadow: 0 0 8px rgba(82, 116, 90, 0.6);
+  animation: pulseDot 2.4s infinite ease-in-out;
+}
+
+.stampText {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: clamp(0.65rem, 0.8vw, 0.75rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted, #656B60);
+  font-weight: 500;
+}
+
+/* Availability Badge Row */
+.badgeRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.locationTag {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: clamp(0.68rem, 0.75vw, 0.78rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted, #656B60);
+  padding: 0.2rem 0.6rem;
+  background-color: rgba(232, 237, 229, 0.65);
+  border: 1px solid rgba(82, 116, 90, 0.18);
+  border-radius: 9999px;
+}
+
+/* Display Headline */
+.headlineBlock {
+  margin-block: 0.5rem;
+}
+
+.headline {
+  font-family: var(--font-display, 'Syne', sans-serif);
+  font-size: clamp(2.75rem, 6.2vw, 5.6rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: var(--color-text, #252922);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.lineClip {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+}
+
+.lineInner {
+  display: block;
+  transform-origin: bottom left;
+}
+
+.lineAccent {
+  color: var(--color-primary, #52745A);
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+/* Sub-text */
+.subText {
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(1rem, 1.35vw, 1.25rem);
+  line-height: 1.55;
+  color: rgba(37, 41, 34, 0.85);
+  max-width: 540px;
+  margin: 0;
+}
+
+/* CTA Row */
+.ctaRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 0.75rem;
+}
+
+.arrow {
+  display: inline-block;
+  margin-left: 0.35rem;
+  transition: transform 0.25s ease;
+}
+
+.ctaRow a:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* Scroll Indicator */
+.scrollWrap {
+  margin-top: clamp(1.25rem, 2.5vw, 2.25rem);
+}
+
+.scrollIndicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(82, 116, 90, 0.2);
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 4px 14px rgba(37, 41, 34, 0.04);
+}
+
+.scrollIndicator:hover {
+  background-color: #FFFFFF;
+  border-color: var(--color-primary, #52745A);
+  transform: translateY(2px);
+  box-shadow: 0 6px 20px rgba(82, 116, 90, 0.15);
+}
+
+.scrollPulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--color-primary, #52745A);
+  box-shadow: 0 0 8px rgba(82, 116, 90, 0.8);
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+.scrollLabel {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--color-text, #252922);
+  text-transform: uppercase;
+}
+
+.scrollArrow {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.85rem;
+  color: var(--color-primary, #52745A);
+  transition: transform 0.25s ease;
+}
+
+.scrollIndicator:hover .scrollArrow {
+  transform: translateY(3px);
+}
+
+/* ==========================================================================
+   Right Column: Device Portal Centerpiece
+   ========================================================================== */
+
+.deviceCol {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: clamp(480px, 60vh, 680px);
+  padding: 1.5rem 1rem;
+  z-index: 10;
+}
+
+/* SVG Orbit System */
+.orbitSvg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 140%;
+  height: 140%;
+  max-width: 680px;
+  max-height: 820px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+  overflow: visible;
+}
+
+.orbitRingOuter {
+  transform-origin: 270px 360px;
+  animation: rotateOuterRing 48s linear infinite;
+}
+
+.orbitRingInner {
+  transform-origin: 270px 360px;
+  animation: rotateInnerRing 36s linear infinite reverse;
+}
+
+@keyframes rotateOuterRing {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateInnerRing {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.signalPulse {
+  transform-origin: 270px 30px;
+  animation: signalPing 2.4s infinite cubic-bezier(0.2, 0.8, 0.4, 1);
+}
+
+.signalPulseOuter {
+  transform-origin: 270px 30px;
+  animation: signalPing 2.4s infinite cubic-bezier(0.2, 0.8, 0.4, 1) 0.6s;
+}
+
+@keyframes signalPing {
+  0% {
+    r: 6px;
+    opacity: 0.65;
+  }
+  80% {
+    r: 22px;
+    opacity: 0;
+  }
+  100% {
+    r: 24px;
+    opacity: 0;
+  }
+}
+
+/* Technical Annotation Labels around device */
+.annotations {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.annotTopRight {
+  position: absolute;
+  top: 4%;
+  right: 0%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  padding: 0.35rem 0.65rem;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(82, 116, 90, 0.2);
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(37, 41, 34, 0.05);
+}
+
+.annotLabel {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-forest-dark, #354B3A);
+}
+
+.annotSub {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  color: var(--color-primary, #52745A);
+}
+
+.annotBottomLeft {
+  position: absolute;
+  bottom: 6%;
+  left: 0%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 0.35rem 0.65rem;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(82, 116, 90, 0.2);
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(37, 41, 34, 0.05);
+}
+
+.annotCoord {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--color-text, #252922);
+}
+
+/* External Floating Chips */
+.externalChips {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.chipApps {
+  position: absolute;
+  top: 24%;
+  left: -2%;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 0.85rem;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(82, 116, 90, 0.22);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(37, 41, 34, 0.08);
+  animation: floatChipA 4.5s ease-in-out infinite alternate;
+}
+
+@keyframes floatChipA {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-8px);
+  }
+}
+
+.chipIcon {
+  font-size: 1.1rem;
+}
+
+.chipVal {
+  font-family: var(--font-display, sans-serif);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--color-text, #252922);
+  line-height: 1;
+  display: block;
+}
+
+.chipMeta {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.58rem;
+  color: var(--color-muted, #656B60);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: block;
+}
+
+.chipFps {
+  position: absolute;
+  bottom: 22%;
+  right: -2%;
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  padding: 0.45rem 0.85rem;
+  background: #354B3A;
+  color: #FFFFFF;
+  border-radius: 9999px;
+  box-shadow: 0 10px 28px rgba(53, 75, 58, 0.3);
+  animation: floatChipB 5s ease-in-out infinite alternate 0.5s;
+}
+
+@keyframes floatChipB {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(8px);
+  }
+}
+
+.chipFpsVal {
+  font-family: var(--font-display, sans-serif);
+  font-size: 1rem;
+  font-weight: 800;
+  color: #B8E986; /* Digital lime accent */
+  line-height: 1;
+}
+
+.chipFpsMeta {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: #E8EDE5;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   Smartphone Device Anatomy (Pure HTML + CSS)
+   ========================================================================== */
+
+.deviceShell {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 9 / 18.8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  will-change: transform;
+  filter: drop-shadow(0 26px 45px rgba(37, 41, 34, 0.18))
+          drop-shadow(0 8px 16px rgba(53, 75, 58, 0.12));
+}
+
+.tiltContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Side Hardware Buttons */
+.leftButtons {
+  position: absolute;
+  left: -3px;
+  top: 90px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 1;
+}
+
+.volUp,
+.volDown {
+  width: 3px;
+  height: 38px;
+  background: linear-gradient(180deg, #52745A 0%, #354B3A 100%);
+  border-radius: 2px 0 0 2px;
+  box-shadow: inset 1px 0 1px rgba(255, 255, 255, 0.25);
+}
+
+.rightButton {
+  position: absolute;
+  right: -3px;
+  top: 110px;
+  z-index: 1;
+}
+
+.powerBtn {
+  width: 3px;
+  height: 52px;
+  background: linear-gradient(180deg, #52745A 0%, #354B3A 100%);
+  border-radius: 0 2px 2px 0;
+  box-shadow: inset -1px 0 1px rgba(255, 255, 255, 0.25);
+}
+
+/* Main Outer Bezel */
+.deviceFrame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #252922;
+  border-radius: 44px;
+  padding: 10px;
+  box-shadow:
+    inset 0 0 0 2px rgba(217, 191, 163, 0.35),
+    inset 0 0 0 4px #354B3A,
+    0 0 0 1px rgba(255, 255, 255, 0.4);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Inner Screen Area */
+.deviceScreen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 36px;
+  background: #E8EDE5;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Dynamic Island Notch */
+.notch {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 82px;
+  height: 22px;
+  background: #111410;
+  border-radius: 14px;
+  z-index: 6;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.notch::after {
+  content: '';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #253327 30%, #0c100c 80%);
+  border: 1px solid rgba(82, 116, 90, 0.4);
+}
+
+/* Screen Portrait Image */
+.screenPortrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+  display: block;
+}
+
+/* Digital Portal Surface revealed during expansion */
+.portalSurface {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    #F5F3ED 0%,
+    #E8EDE5 55%,
+    #D9BFA3 100%
+  );
+  opacity: 0;
+  pointer-events: none;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.portalGridPattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(82, 116, 90, 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(82, 116, 90, 0.14) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: center center;
+  opacity: 0.7;
+}
+
+.portalAperture {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  padding: 1rem;
+}
+
+.apertureRing {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 1.5px dashed var(--color-primary, #52745A);
+  animation: rotateAperture 24s linear infinite;
+}
+
+@keyframes rotateAperture {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.portalTag {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--color-forest-dark, #354B3A);
+  text-transform: uppercase;
+}
+
+.portalCoords {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  color: var(--color-muted, #656B60);
+}
+
+/* Gradient overlay at bottom of screen */
+.screenOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(37, 41, 34, 0.02) 0%,
+    rgba(37, 41, 34, 0.15) 55%,
+    rgba(37, 41, 34, 0.72) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* In-Screen Identity Chip */
+.screenChip {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0.4rem 0.85rem;
+  background: rgba(37, 41, 34, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 9999px;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  z-index: 5;
+}
+
+.chipPulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #B8E986; /* Digital lime live dot */
+  box-shadow: 0 0 8px rgba(184, 233, 134, 0.9);
+  animation: pulseDot 1.8s infinite ease-in-out;
+}
+
+.chipText {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+/* Screen Surface Glass Reflection */
+.frameGloss {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    125deg,
+    rgba(255, 255, 255, 0.16) 0%,
+    rgba(255, 255, 255, 0.04) 30%,
+    transparent 50%
+  );
+  border-radius: 44px;
+  pointer-events: none;
+  z-index: 7;
+}
+
+/* Bottom Home Indicator Bar */
+.homeBar {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 9999px;
+  z-index: 8;
+}
+
+/* ==========================================================================
+   Shared Keyframes
+   ========================================================================== */
+
+@keyframes pulseDot {
+  0%, 100% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+@media (max-width: 979px) {
+  .heroSection {
+    min-height: auto;
+    padding-top: calc(var(--header-height) + clamp(0.5rem, 2vw, 1.25rem));
+    padding-bottom: 2.5rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+
+  .deviceCol {
+    order: -1;
+    min-height: auto;
+    padding-block: 1rem;
+  }
+
+  .deviceShell {
+    max-width: 270px;
+  }
+
+  .orbitSvg {
+    width: 160%;
+    height: 160%;
+  }
+
+  .contentCol {
+    text-align: left;
+  }
+
+  .ctaRow {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .headline {
+    font-size: clamp(1.85rem, 9.2vw, 3.25rem);
+    line-height: 0.98;
+  }
+
+  .subText {
+    font-size: 0.95rem;
+  }
+
+  .deviceShell {
+    max-width: 240px;
+    border-radius: 38px;
+  }
+
+  .deviceFrame {
+    border-radius: 38px;
+    padding: 8px;
+  }
+
+  .deviceScreen {
+    border-radius: 30px;
+  }
+
+  .notch {
+    width: 70px;
+    height: 18px;
+  }
+
+  .chipApps {
+    top: 14%;
+    left: 0;
+    padding: 0.35rem 0.65rem;
+  }
+
+  .chipFps {
+    bottom: 12%;
+    right: 0;
+    padding: 0.35rem 0.65rem;
+  }
+
+  .annotTopRight,
+  .annotBottomLeft {
+    display: none; /* Hide dense annotations on narrow mobile to avoid clutter */
+  }
+
+  .ctaRow {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .ctaRow a,
+  .ctaRow button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 360px) {
+  .deviceShell {
+    max-width: 210px;
+  }
+
+  .externalChips {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   Reduced Motion Preferences
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .orbitRingOuter,
+  .orbitRingInner,
+  .signalPulse,
+  .signalPulseOuter,
+  .stampDot,
+  .scrollPulse,
+  .chipPulse,
+  .chipApps,
+  .chipFps,
+  .apertureRing {
+    animation: none !important;
+  }
+
+  .deviceShell,
+  .tiltContainer {
+    transform: none !important;
+  }
+
+  .portalSurface {
+    display: none !important;
+  }
+
+  .lineInner,
+  .screenPortrait {
+    clip-path: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+:global([data-in-view="false"]) .orbitRingOuter,
+:global([data-in-view="false"]) .orbitRingInner,
+:global([data-in-view="false"]) .signalPulse,
+:global([data-in-view="false"]) .signalPulseOuter,
+:global([data-in-view="false"]) .stampDot,
+:global([data-in-view="false"]) .scrollPulse,
+:global([data-in-view="false"]) .chipPulse,
+:global([data-in-view="false"]) .chipApps,
+:global([data-in-view="false"]) .chipFps,
+:global([data-in-view="false"]) .apertureRing {
+  animation-play-state: paused !important;
+}

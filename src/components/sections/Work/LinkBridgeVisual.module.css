@@ -1,0 +1,687 @@
+/* ==========================================================================
+   LinkBridge Visual Environment — Connected Device Architecture
+   Phase 4: Spatial Depth, Choreographed Sequence, and Layered Glow
+   ========================================================================== */
+
+.schematicCanvas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 430px;
+  background: radial-gradient(circle at 50% 50%, #1c261e 0%, #121612 100%);
+  border-radius: 18px;
+  border: 1px solid rgba(82, 116, 90, 0.45);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 24px 52px rgba(18, 22, 16, 0.45);
+  perspective: 1200px;
+}
+
+.blueprintGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(82, 116, 90, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(82, 116, 90, 0.08) 1px, transparent 1px);
+  background-size: 22px 22px;
+  pointer-events: none;
+}
+
+/* Illustrative Top Banner with Interactive Re-Sync Button */
+.illustrativeBanner {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(82, 116, 90, 0.25);
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.bannerContent {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.bannerDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #B8E986;
+  box-shadow: 0 0 8px #B8E986;
+  flex-shrink: 0;
+}
+
+.bannerText {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #D9BFA3;
+  letter-spacing: 0.08em;
+}
+
+.reSyncBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(82, 116, 90, 0.2);
+  border: 1px solid rgba(184, 233, 134, 0.4);
+  color: #B8E986;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.54rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.reSyncBtn:hover {
+  background: rgba(184, 233, 134, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Main Asymmetric Diagram Scene */
+.bridgeDiagram {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 0.85rem;
+  margin-block: auto;
+}
+
+/* Left: Phone Wrapper in 3D Perspective */
+.phonePerspectiveWrapper {
+  flex: 0 0 auto;
+  width: 175px;
+  transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
+  transition: transform 0.4s ease;
+  will-change: transform;
+}
+
+.phonePerspectiveWrapper:hover {
+  transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+}
+
+.asymmetricPhone {
+  max-width: 170px;
+  aspect-ratio: 9 / 17.5;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+}
+
+.phoneScreenContent {
+  padding: 0.45rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  height: 100%;
+  background: #F5F3ED;
+}
+
+.clientHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid rgba(82, 116, 90, 0.2);
+}
+
+.deviceStatus {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.statusDotLive {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #52745A;
+  box-shadow: 0 0 6px #52745A;
+  transition: background-color 0.3s ease;
+}
+
+.dotPulsing {
+  background-color: #B8E986;
+  box-shadow: 0 0 8px #B8E986;
+  animation: pulseBeacon 0.8s infinite alternate;
+}
+
+@keyframes pulseBeacon {
+  from {
+    transform: scale(0.8);
+    opacity: 0.6;
+  }
+  to {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+}
+
+.clientTitle {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: #252922;
+}
+
+.ipBadge {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.5rem;
+  color: #52745A;
+  background: rgba(82, 116, 90, 0.12);
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+.connectedCard {
+  background: #FFFFFF;
+  border: 1px solid rgba(82, 116, 90, 0.25);
+  border-radius: 6px;
+  padding: 0.35rem 0.45rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.cardHeaderSmall {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardType {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.48rem;
+  color: #656B60;
+  font-weight: 600;
+}
+
+.lockBadge {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.46rem;
+  color: #354B3A;
+  background: rgba(82, 116, 90, 0.15);
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-weight: 700;
+}
+
+.hostName {
+  font-family: var(--font-display, sans-serif);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #252922;
+  margin-top: 1px;
+}
+
+.subDetail {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.48rem;
+  color: #656B60;
+}
+
+.syncCard {
+  background: #E8EDE5;
+  border-radius: 6px;
+  padding: 0.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.syncItem {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #FFFFFF;
+  padding: 0.3rem 0.4rem;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.itemActiveGlow {
+  border: 1px solid #B8E986;
+  box-shadow: 0 0 8px rgba(184, 233, 134, 0.35);
+}
+
+.syncIconWrap {
+  color: #52745A;
+  display: flex;
+  align-items: center;
+}
+
+.syncMeta {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.syncRowJustified {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.syncLabel {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.5rem;
+  font-weight: 700;
+  color: #252922;
+}
+
+.percentText {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.48rem;
+  font-weight: 800;
+  color: #354B3A;
+}
+
+.syncValue {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.46rem;
+  color: #656B60;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.miniProgressBar {
+  width: 100%;
+  height: 3px;
+  background: #E8EDE5;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 2px;
+}
+
+.miniProgressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #52745A 0%, #B8E986 100%);
+  border-radius: 2px;
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.syncTick {
+  color: #52745A;
+  font-size: 0.6rem;
+  font-weight: 800;
+}
+
+.serviceStatus {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.46rem;
+  color: #354B3A;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: rgba(82, 116, 90, 0.12);
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.heartbeatPulse {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #52745A;
+}
+
+/* Central Multi-Layer Transmission Architecture */
+.centralBridge {
+  flex: 1;
+  min-width: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.bridgeSvg {
+  width: 100%;
+  height: 90px;
+  overflow: visible;
+}
+
+.cableTrackBase {
+  fill: none;
+  stroke: rgba(82, 116, 90, 0.3);
+  stroke-width: 2;
+  stroke-dasharray: 4 4;
+}
+
+.cableTrackBaseReturn {
+  fill: none;
+  stroke: rgba(217, 191, 163, 0.25);
+  stroke-width: 2;
+  stroke-dasharray: 4 4;
+}
+
+.cableTrackPulsePrimary {
+  fill: none;
+  stroke: #B8E986;
+  stroke-width: 2.5;
+  stroke-dasharray: 10 50;
+  animation: primaryFlow 2s linear infinite;
+}
+
+.cableTrackPulseReturn {
+  fill: none;
+  stroke: #D9BFA3;
+  stroke-width: 2.5;
+  stroke-dasharray: 10 50;
+  animation: returnFlow 2.4s linear infinite;
+}
+
+@keyframes primaryFlow {
+  from {
+    stroke-dashoffset: 60;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes returnFlow {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 60;
+  }
+}
+
+.cableBusLine {
+  stroke: rgba(82, 116, 90, 0.4);
+  stroke-width: 1.5;
+  stroke-dasharray: 2 3;
+}
+
+.junctionNode {
+  fill: #B8E986;
+}
+
+.junctionRing {
+  fill: none;
+  stroke: rgba(184, 233, 134, 0.4);
+  stroke-width: 1;
+  animation: ringPulse 2s ease-out infinite;
+}
+
+.junctionNodeReturn {
+  fill: #D9BFA3;
+}
+
+@keyframes ringPulse {
+  0% {
+    r: 4.5px;
+    opacity: 0.8;
+  }
+  100% {
+    r: 12px;
+    opacity: 0;
+  }
+}
+
+.inView .cableTrackPulsePrimary,
+.inView .cableTrackPulseReturn {
+  animation-play-state: running;
+}
+
+.paused .cableTrackPulsePrimary,
+.paused .cableTrackPulseReturn,
+.paused .junctionRing,
+.paused .streamArrow,
+.paused .termCursor,
+.paused .dotPulsing {
+  animation-play-state: paused;
+}
+
+.telemetryHub {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.2rem;
+}
+
+.telemetryBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: rgba(24, 32, 26, 0.9);
+  border: 1px solid rgba(82, 116, 90, 0.45);
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.52rem;
+  color: #F5F3ED;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.directionalBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.5rem;
+  color: #B8E986;
+  font-weight: 700;
+}
+
+.streamArrow {
+  font-size: 0.55rem;
+  animation: arrowShift 1.2s infinite ease-in-out;
+}
+
+@keyframes arrowShift {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+}
+
+.telemetryDotGreen {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #B8E986;
+}
+
+.telemetryDotAmber {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #D9BFA3;
+}
+
+/* Right: Desktop Terminal in Perspective Scale */
+.desktopPerspectiveWrapper {
+  flex: 1;
+  max-width: 290px;
+  min-width: 190px;
+  transform: perspective(1000px) rotateY(4deg) scale(0.97);
+  transition: transform 0.4s ease;
+  will-change: transform;
+}
+
+.desktopPerspectiveWrapper:hover {
+  transform: perspective(1000px) rotateY(0deg) scale(1);
+}
+
+.asymmetricTerminal {
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+}
+
+.terminalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.56rem;
+  line-height: 1.35;
+  color: #E8EDE5;
+}
+
+.termRow {
+  display: flex;
+  gap: 0.3rem;
+  color: #B8E986;
+}
+
+.termPrompt {
+  color: #D9BFA3;
+  font-weight: 700;
+}
+
+.termCmd {
+  color: #FFFFFF;
+}
+
+.termLogLine {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  color: #A0B29F;
+  font-size: 0.52rem;
+  overflow-wrap: anywhere;
+  transition: color 0.3s ease;
+}
+
+.logActiveHighlight {
+  color: #B8E986;
+  text-shadow: 0 0 6px rgba(184, 233, 134, 0.4);
+}
+
+.logTagInfo {
+  color: #D9BFA3;
+  font-weight: 700;
+}
+
+.logTagOk {
+  color: #B8E986;
+  font-weight: 700;
+}
+
+.logTagSync {
+  color: #8FD859;
+  font-weight: 700;
+}
+
+.logTagRecv {
+  color: #E8EDE5;
+  font-weight: 700;
+}
+
+.termCursorLine {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.termCursor {
+  width: 6px;
+  height: 11px;
+  background: #B8E986;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Protocol Watermark */
+.protocolWatermark {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  text-align: center;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.54rem;
+  color: rgba(217, 191, 163, 0.65);
+  letter-spacing: 0.08em;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(82, 116, 90, 0.2);
+}
+
+/* Responsive Handling */
+@media (max-width: 1023px) {
+  .schematicCanvas {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .schematicCanvas {
+    min-height: auto;
+    padding: 1rem 0.75rem;
+  }
+
+  .bridgeDiagram {
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .phonePerspectiveWrapper,
+  .desktopPerspectiveWrapper {
+    transform: none !important;
+    width: 100%;
+    max-width: 220px;
+  }
+
+  .asymmetricPhone {
+    max-width: 210px;
+    aspect-ratio: 9 / 14;
+  }
+
+  .centralBridge {
+    width: 100%;
+  }
+
+  .bridgeSvg {
+    display: none;
+  }
+
+  .telemetryHub {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .desktopPerspectiveWrapper {
+    max-width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cableTrackPulsePrimary,
+  .cableTrackPulseReturn,
+  .junctionRing,
+  .streamArrow,
+  .termCursor,
+  .dotPulsing {
+    animation: none !important;
+  }
+}

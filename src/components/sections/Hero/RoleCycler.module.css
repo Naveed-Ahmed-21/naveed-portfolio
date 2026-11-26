@@ -1,0 +1,63 @@
+.cyclerWrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-block: var(--space-2) var(--space-3);
+}
+
+.roleHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.counter {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-primary);
+  font-weight: var(--fw-semibold);
+}
+
+.roleBadge {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-muted);
+  padding: 0.15rem 0.5rem;
+  background-color: var(--color-section);
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border-subtle);
+}
+
+.roleStage {
+  position: relative;
+  height: clamp(2rem, 3.5vw, 2.75rem);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.roleText {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.5vw, 2.1rem);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-primary);
+  line-height: 1.2;
+  will-change: transform, opacity;
+  transition: transform 0.35s var(--ease-subtle), opacity 0.35s var(--ease-subtle);
+}
+
+.roleEnter {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.roleExit {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+

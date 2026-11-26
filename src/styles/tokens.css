@@ -1,0 +1,217 @@
+/**
+ * Forest & Ivory Design System Tokens
+ * 
+ * Palette:
+ * - #F5F3ED : Ivory Background
+ * - #FFFFFF : Pure Surface White
+ * - #252922 : Deep Forest Bark / Primary Dark Text
+ * - #656B60 : Muted Olive Slate / Secondary Neutral
+ * - #52745A : Sage Green / Primary Accent
+ * - #354B3A : Deep Evergreen / Contrast Accent
+ * - #E8EDE5 : Soft Moss Mist / Tinted Surface
+ * - #D9BFA3 : Warm Sand / Secondary Warm Accent
+ */
+
+:root {
+  /* ==========================================================================
+     Forest & Ivory Canonical Design Tokens
+     ========================================================================== */
+  --color-background: #F5F3ED;
+  --color-surface: #FFFFFF;
+  --color-section: #E8EDE5;
+  --color-text: #252922;
+  --color-muted: #656B60;
+  --color-primary: #52745A;
+  --color-primary-hover: #354B3A;
+  --color-champagne: #D9BFA3;
+  --color-border: #E5E1D8;
+
+  /* Motion Duration Tokens */
+  --motion-fast: 180ms;
+  --motion-normal: 350ms;
+  --motion-slow: 650ms;
+
+  /* Motion Easing Curves */
+  --ease-subtle: cubic-bezier(0.25, 1, 0.5, 1);
+
+  /* ==========================================================================
+     Color Primitives & Semantic Aliases
+     ========================================================================== */
+  --color-ivory: var(--color-background);
+  --color-white: var(--color-surface);
+  --color-forest-dark: var(--color-text);
+  --color-olive-muted: var(--color-muted);
+  --color-sage: var(--color-primary);
+  --color-evergreen: var(--color-primary-hover);
+  --color-moss-light: var(--color-section);
+  --color-sand-warm: var(--color-champagne);
+
+  /* Alpha Variants */
+  --color-forest-dark-90: rgba(37, 41, 34, 0.9);
+  --color-forest-dark-75: rgba(37, 41, 34, 0.75);
+  --color-forest-dark-50: rgba(37, 41, 34, 0.5);
+  --color-forest-dark-20: rgba(37, 41, 34, 0.2);
+  --color-forest-dark-10: rgba(37, 41, 34, 0.1);
+  --color-forest-dark-05: rgba(37, 41, 34, 0.05);
+
+  --color-olive-muted-80: rgba(101, 107, 96, 0.8);
+  --color-olive-muted-50: rgba(101, 107, 96, 0.5);
+  --color-olive-muted-20: rgba(101, 107, 96, 0.2);
+  --color-olive-muted-10: rgba(101, 107, 96, 0.1);
+
+  --color-sage-90: rgba(82, 116, 90, 0.9);
+  --color-sage-30: rgba(82, 116, 90, 0.3);
+  --color-sage-15: rgba(82, 116, 90, 0.15);
+  --color-sage-08: rgba(82, 116, 90, 0.08);
+
+  --color-sand-warm-30: rgba(217, 191, 163, 0.3);
+  --color-sand-warm-15: rgba(217, 191, 163, 0.15);
+
+  --color-white-90: rgba(255, 255, 255, 0.9);
+  --color-white-70: rgba(255, 255, 255, 0.7);
+  --color-white-40: rgba(255, 255, 255, 0.4);
+
+  /* ==========================================================================
+     Semantic Colors
+     ========================================================================== */
+  --bg-primary: var(--color-ivory);
+  --bg-secondary: var(--color-moss-light);
+  --bg-surface: var(--color-white);
+  --bg-surface-elevated: var(--color-white);
+  --bg-dark: var(--color-forest-dark);
+  --bg-accent-light: var(--color-sage-08);
+
+  --text-primary: var(--color-forest-dark);
+  --text-secondary: var(--color-olive-muted);
+  --text-muted: var(--color-olive-muted-80);
+  --text-inverse: var(--color-ivory);
+  --text-inverse-muted: var(--color-sand-warm);
+
+  --accent-primary: var(--color-sage);
+  --accent-hover: var(--color-evergreen);
+  --accent-deep: var(--color-evergreen);
+  --accent-warm: var(--color-sand-warm);
+
+  --border-subtle: var(--color-border);
+  --border-medium: var(--color-olive-muted-50);
+  --border-accent: var(--color-sage-30);
+  --border-dark: var(--color-forest-dark-20);
+
+  /* ==========================================================================
+     Typography
+     ========================================================================== */
+  --font-display: 'Syne', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Font Weights */
+  --fw-light: 300;
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-heavy: 800;
+
+  /* Fluid Type Scale (clamp(min, preferred, max)) */
+  --text-2xs: clamp(0.7rem, 0.65rem + 0.25vw, 0.75rem);
+  --text-xs: clamp(0.78rem, 0.74rem + 0.3vw, 0.85rem);
+  --text-sm: clamp(0.88rem, 0.82rem + 0.35vw, 0.95rem);
+  --text-base: clamp(1rem, 0.95rem + 0.4vw, 1.075rem);
+  --text-lg: clamp(1.125rem, 1.05rem + 0.5vw, 1.25rem);
+  --text-xl: clamp(1.25rem, 1.15rem + 0.75vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 1.35rem + 1.1vw, 2rem);
+  --text-3xl: clamp(1.85rem, 1.6rem + 1.6vw, 2.6rem);
+  --text-4xl: clamp(2.35rem, 1.95rem + 2.5vw, 3.6rem);
+  --text-5xl: clamp(3rem, 2.4rem + 3.8vw, 5rem);
+  --text-display: clamp(3.5rem, 2.8rem + 5vw, 6.8rem);
+
+  /* Line Heights */
+  --lh-tight: 1.1;
+  --lh-snug: 1.25;
+  --lh-normal: 1.55;
+  --lh-relaxed: 1.7;
+
+  /* Letter Spacing */
+  --tracking-tight: -0.03em;
+  --tracking-snug: -0.015em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.1em;
+
+  /* ==========================================================================
+     Spacing Scale (4px base)
+     ========================================================================== */
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-5: 1.25rem;  /* 20px */
+  --space-6: 1.5rem;   /* 24px */
+  --space-8: 2rem;     /* 32px */
+  --space-10: 2.5rem;  /* 40px */
+  --space-12: 3rem;    /* 48px */
+  --space-16: 4rem;    /* 64px */
+  --space-20: 5rem;    /* 80px */
+  --space-24: 6rem;    /* 96px */
+  --space-32: 8rem;    /* 128px */
+
+  /* Section Spacing */
+  --section-padding-y: clamp(4.5rem, 8vw, 8.5rem);
+  --section-gap: clamp(2.5rem, 5vw, 5rem);
+
+  /* ==========================================================================
+     Layout & Grid
+     ========================================================================== */
+  --container-max: 1320px;
+  --container-narrow: 980px;
+  --container-gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --header-height: 5rem;
+  --header-height-scrolled: 4.25rem;
+
+  /* ==========================================================================
+     Border Radii
+     ========================================================================== */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 26px;
+  --radius-2xl: 36px;
+  --radius-full: 9999px;
+
+  /* ==========================================================================
+     Shadows & Elevations
+     ========================================================================== */
+  --shadow-subtle: 0 2px 10px rgba(37, 41, 34, 0.04);
+  --shadow-card: 0 8px 30px rgba(37, 41, 34, 0.06);
+  --shadow-hover: 0 16px 45px rgba(37, 41, 34, 0.1);
+  --shadow-elevated: 0 24px 60px rgba(37, 41, 34, 0.12);
+  --shadow-forest: 0 12px 36px rgba(53, 75, 58, 0.18);
+
+  /* ==========================================================================
+     Animation Timings & GSAP Constants
+     ========================================================================== */
+  --ease-expo-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-back-out: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --duration-instant: 150ms;
+  --duration-fast: 250ms;
+  --duration-normal: 400ms;
+  --duration-slow: 700ms;
+  --duration-leisurely: 1000ms;
+
+  /* ==========================================================================
+     Z-Index Hierarchy
+     ========================================================================== */
+  --z-background: -10;
+  --z-base: 1;
+  --z-raised: 10;
+  --z-sticky: 50;
+  --z-header: 100;
+  --z-modal-backdrop: 200;
+  --z-modal: 210;
+  --z-cursor: 999;
+}
+

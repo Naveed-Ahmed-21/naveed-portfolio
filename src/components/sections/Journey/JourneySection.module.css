@@ -1,0 +1,1336 @@
+/* ==========================================================================
+   Journey Section — Engineering Path (Continuous Visual Narrative)
+   ========================================================================== */
+
+.journeySection {
+  position: relative;
+  width: 100%;
+  padding-top: clamp(2rem, 3.5vw, 3rem);
+  padding-bottom: 0;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  overflow: hidden;
+}
+
+/* Background Engineering Lines */
+.journeyBackground {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.rulerLineTop {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(82, 116, 90, 0.12) 20%, rgba(82, 116, 90, 0.12) 80%, transparent 100%);
+}
+
+.rulerLineBottom {
+  position: absolute;
+  bottom: 120px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(101, 107, 96, 0.08) 25%, rgba(101, 107, 96, 0.08) 75%, transparent 100%);
+}
+
+/* ==========================================================================
+   Section Header
+   ========================================================================== */
+.journeyHeader {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.headerMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid rgba(82, 116, 90, 0.15);
+}
+
+.headerIndex {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-primary);
+  text-transform: uppercase;
+}
+
+.signalStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-muted);
+}
+
+.signalDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  box-shadow: 0 0 8px rgba(82, 116, 90, 0.7);
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.8vw, 3.2rem);
+  font-weight: var(--fw-heavy);
+  line-height: var(--lh-tight);
+  color: var(--color-text);
+  letter-spacing: -0.025em;
+  margin: 0 0 var(--space-3) 0;
+}
+
+.sectionDesc {
+  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+  line-height: var(--lh-relaxed);
+  color: var(--color-muted);
+  margin: 0;
+  max-width: 780px;
+}
+
+/* ==========================================================================
+   Continuous Journey Track Layout
+   ========================================================================== */
+.journeyTrack {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+/* SVG Conduit Spine */
+.conduitSpine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 20px;
+  width: 24px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.conduitSvg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+@media (min-width: 1024px) {
+  .conduitSpine {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* Milestones List */
+.milestonesList {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.75rem, 3.5vw, 3rem);
+}
+
+/* Milestone Item */
+.milestoneItem {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  padding-left: 54px;
+}
+
+@media (min-width: 1024px) {
+  .milestoneItem {
+    grid-template-columns: 1fr 1fr;
+    padding-left: 0;
+    column-gap: clamp(3rem, 6vw, 6rem);
+    align-items: center;
+  }
+
+  .milestoneReverse .milestoneContent {
+    order: 2;
+  }
+
+  .milestoneReverse .sceneWrapper {
+    order: 1;
+  }
+}
+
+/* Waypoint Conduit Node */
+.waypointNode {
+  position: absolute;
+  top: 1.25rem;
+  left: 20px;
+  width: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  z-index: 3;
+}
+
+@media (min-width: 1024px) {
+  .waypointNode {
+    left: 50%;
+    transform: translateX(-50%);
+    top: 2rem;
+  }
+}
+
+.waypointBeacon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 4px rgba(82, 116, 90, 0.15);
+}
+
+.waypointDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+}
+
+.waypointPulse {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid var(--color-primary);
+  opacity: 0.6;
+  animation: beaconPulse 2.4s infinite ease-out;
+}
+
+@keyframes beaconPulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+.waypointTag {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: var(--fw-bold);
+  color: var(--color-primary);
+  background-color: var(--color-section);
+  padding: 1px 4px;
+  border-radius: var(--radius-xs);
+  border: 1px solid rgba(82, 116, 90, 0.2);
+}
+
+/* ==========================================================================
+   Milestone Narrative Content Box
+   ========================================================================== */
+.milestoneContent {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  box-shadow: 0 8px 30px rgba(37, 41, 34, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  transition: transform var(--duration-fast) var(--ease-subtle), border-color var(--duration-fast);
+}
+
+.milestoneContent:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 12px 36px rgba(82, 116, 90, 0.1);
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.milestoneTypeBadge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-wider);
+  background-color: var(--color-section);
+  color: var(--color-primary-hover);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid rgba(82, 116, 90, 0.2);
+}
+
+.periodBadge {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--color-muted);
+  letter-spacing: var(--tracking-wide);
+}
+
+.locationPill {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--color-muted);
+  background-color: var(--color-background);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--color-border);
+  margin-left: auto;
+}
+
+.titleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.milestoneTitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 1.8vw, 1.6rem);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-snug);
+  color: var(--color-text);
+  margin: 0;
+}
+
+.organizationTitle {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: var(--fw-semibold);
+  color: var(--color-primary);
+  margin: 0;
+}
+
+.milestoneDescription {
+  font-size: clamp(0.88rem, 1vw, 0.96rem);
+  line-height: var(--lh-relaxed);
+  color: rgba(37, 41, 34, 0.82);
+  margin: 0;
+}
+
+.responsibilitiesBox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.85rem 1rem;
+  background-color: var(--color-background);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--color-primary);
+}
+
+.responsibilitiesLabel {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-primary-hover);
+  text-transform: uppercase;
+}
+
+.responsibilitiesList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.responsibilityItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: var(--text-xs);
+  color: var(--color-text);
+  line-height: 1.45;
+}
+
+.resDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+.technologiesRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: var(--space-1);
+}
+
+.techBadge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: var(--fw-semibold);
+  background-color: var(--color-section);
+  color: var(--color-text);
+  padding: 0.18rem 0.55rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--color-border);
+}
+
+/* Scene Wrapper */
+.sceneWrapper {
+  width: 100%;
+}
+
+/* ==========================================================================
+   Scene 1: Academic Computing Blueprint
+   ========================================================================== */
+.blueprintScene {
+  background-color: #161D18;
+  border: 1px solid rgba(82, 116, 90, 0.35);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  box-shadow: 0 12px 36px rgba(22, 29, 24, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  position: relative;
+  overflow: hidden;
+}
+
+.blueprintHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(82, 116, 90, 0.2);
+}
+
+.blueprintTitleWrap {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.blueprintIcon {
+  font-size: 0.85rem;
+}
+
+.blueprintCode {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-wider);
+  color: #B8E986;
+}
+
+.blueprintBadge {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--color-champagne);
+  letter-spacing: var(--tracking-wide);
+}
+
+.blueprintGrid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+  margin-block: 0.25rem;
+}
+
+@media (min-width: 600px) {
+  .blueprintGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.blueprintOverlayGrid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: 
+    linear-gradient(rgba(82, 116, 90, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(82, 116, 90, 0.08) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.blueprintPillar {
+  position: relative;
+  background-color: rgba(32, 42, 35, 0.7);
+  border: 1px solid rgba(82, 116, 90, 0.25);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-subtle);
+  outline: none;
+}
+
+.blueprintPillar:hover {
+  border-color: #B8E986;
+  background-color: rgba(42, 56, 46, 0.85);
+  transform: translateY(-2px);
+}
+
+.blueprintPillar:focus-visible {
+  outline: 2px solid #B8E986;
+  outline-offset: 2px;
+}
+
+.blueprintPillarActive {
+  border-color: #B8E986;
+  border-left: 3px solid #B8E986;
+  background-color: rgba(42, 56, 46, 0.95);
+  box-shadow: 0 4px 16px rgba(184, 233, 134, 0.1);
+}
+
+.pillarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+}
+
+.pillarNum {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: var(--fw-bold);
+  color: #B8E986;
+}
+
+.pillarCode {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  color: #A0B29F;
+}
+
+.pillarTitle {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: var(--fw-bold);
+  color: #FFFFFF;
+  margin: 0 0 0.25rem 0;
+}
+
+.pillarDesc {
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: #A0B29F;
+  margin: 0 0 0.4rem 0;
+}
+
+.pillarTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.pillarTag {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  background-color: rgba(82, 116, 90, 0.25);
+  color: #E8EDE5;
+  padding: 0.1rem 0.4rem;
+  border-radius: var(--radius-xs);
+}
+
+.blueprintFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding-top: 0.4rem;
+  border-top: 1px solid rgba(82, 116, 90, 0.2);
+}
+
+.blueprintCoord {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: #A0B29F;
+}
+
+.blueprintVerify {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: var(--fw-bold);
+  color: #B8E986;
+}
+
+/* ==========================================================================
+   Scene 2: Mobile Interface Engineering Sandbox
+   ========================================================================== */
+.mobileSandboxScene {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  box-shadow: 0 8px 30px rgba(37, 41, 34, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.sandboxHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sandboxMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.devicePill {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: var(--fw-bold);
+  color: var(--color-primary);
+}
+
+.sandboxStatus {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: #52745A;
+}
+
+.sandboxTabs {
+  display: flex;
+  gap: 4px;
+}
+
+.sandboxTabBtn {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: var(--fw-bold);
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-background);
+  color: var(--color-muted);
+  cursor: pointer;
+  transition: all var(--duration-fast);
+}
+
+.sandboxTabActive {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #FFFFFF;
+}
+
+.sandboxDisplay {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+@media (min-width: 600px) {
+  .sandboxDisplay {
+    grid-template-columns: 140px 1fr;
+  }
+}
+
+/* Miniature Phone */
+.miniPhoneViewport {
+  width: 140px;
+  background-color: #1E231C;
+  border: 2px solid rgba(82, 116, 90, 0.4);
+  border-radius: 14px;
+  padding: 6px;
+  box-shadow: 0 8px 24px rgba(37, 41, 34, 0.1);
+  margin-inline: auto;
+}
+
+.miniPhoneBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 4px 4px;
+  border-bottom: 1px solid rgba(82, 116, 90, 0.2);
+}
+
+.miniPhoneTime,
+.miniPhoneBat {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  color: #E8EDE5;
+}
+
+.miniPhoneNotch {
+  width: 24px;
+  height: 4px;
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.miniPhoneBody {
+  padding: 6px 2px 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.miniAppNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 4px;
+}
+
+.miniNavTitle {
+  font-family: var(--font-display);
+  font-size: 0.58rem;
+  font-weight: var(--fw-bold);
+  color: #FFFFFF;
+}
+
+.miniNavTag {
+  font-family: var(--font-mono);
+  font-size: 0.48rem;
+  color: #B8E986;
+}
+
+.miniCardList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.miniCard {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.miniCardDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #52745A;
+  flex-shrink: 0;
+}
+
+.miniCardLines {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.miniLineLong {
+  height: 3px;
+  width: 90%;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 1px;
+}
+
+.miniLineMed {
+  height: 3px;
+  width: 60%;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 1px;
+}
+
+.miniLineShort {
+  height: 3px;
+  width: 40%;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 1px;
+}
+
+.miniActionButton {
+  background-color: #52745A;
+  border: none;
+  border-radius: 4px;
+  color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  font-weight: var(--fw-bold);
+  padding: 4px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.miniBtnArrow {
+  font-size: 0.6rem;
+}
+
+/* Telemetry Output */
+.sandboxTelemetry {
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.85rem;
+}
+
+.telemetryTitle {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: var(--fw-bold);
+  color: var(--color-primary);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.codeHierarchy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.treeNode {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+}
+
+.treeIndent {
+  color: var(--color-muted);
+}
+
+.treeClass {
+  color: var(--color-text);
+  font-weight: var(--fw-bold);
+  overflow-wrap: anywhere;
+}
+
+.treeProp {
+  color: var(--color-muted);
+  font-size: 0.6rem;
+}
+
+.treeBadge {
+  font-size: 0.55rem;
+  background-color: var(--color-section);
+  color: var(--color-primary);
+  padding: 1px 4px;
+  border-radius: var(--radius-xs);
+}
+
+.apiPipeline {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.apiItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  flex-wrap: wrap;
+}
+
+.apiMethod {
+  font-weight: var(--fw-bold);
+  color: #52745A;
+}
+
+.apiRoute {
+  color: var(--color-text);
+  overflow-wrap: anywhere;
+}
+
+.apiStatus {
+  color: var(--color-muted);
+  font-size: 0.62rem;
+  margin-left: auto;
+}
+
+.apiPayload {
+  background-color: #20241E;
+  color: #B8E986;
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-size: 0.62rem;
+  margin-top: 4px;
+  overflow-x: auto;
+}
+
+.sandboxFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding-top: 0.4rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.sandboxPeriod {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--color-muted);
+}
+
+.sandboxTools {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: var(--fw-bold);
+  color: var(--color-primary);
+}
+
+/* ==========================================================================
+   Scene 3: Coordination Network Topology
+   ========================================================================== */
+.networkScene {
+  background-color: #19211B;
+  border: 1px solid rgba(82, 116, 90, 0.35);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  box-shadow: 0 12px 36px rgba(25, 33, 27, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.networkHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(82, 116, 90, 0.2);
+}
+
+.networkTitleWrap {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.networkIcon {
+  font-size: 0.85rem;
+}
+
+.networkCode {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-wider);
+  color: #B8E986;
+}
+
+.networkBadge {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--color-champagne);
+}
+
+.networkGraphContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.centralHub {
+  position: relative;
+  align-self: center;
+  background-color: #243027;
+  border: 2px solid #B8E986;
+  border-radius: var(--radius-full);
+  padding: 0.5rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(184, 233, 134, 0.2);
+}
+
+.hubPulseRing {
+  position: absolute;
+  inset: -6px;
+  border-radius: var(--radius-full);
+  border: 1px solid #B8E986;
+  animation: beaconPulse 2.6s infinite ease-out;
+  pointer-events: none;
+}
+
+.hubCore {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hubTitle {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-wider);
+  color: #B8E986;
+}
+
+.hubSub {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: var(--fw-bold);
+  color: #FFFFFF;
+}
+
+.branchNodesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+
+@media (min-width: 600px) {
+  .branchNodesGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.branchNode {
+  background-color: rgba(36, 48, 39, 0.6);
+  border: 1px solid rgba(82, 116, 90, 0.25);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 0.9rem;
+  cursor: pointer;
+  transition: all var(--duration-fast);
+  outline: none;
+}
+
+.branchNode:hover {
+  border-color: #B8E986;
+  background-color: rgba(46, 62, 50, 0.8);
+}
+
+.branchNode:focus-visible {
+  outline: 2px solid #B8E986;
+  outline-offset: 2px;
+}
+
+.branchNodeSelected {
+  border-color: #B8E986;
+  border-left: 3px solid #B8E986;
+  background-color: rgba(46, 62, 50, 0.95);
+}
+
+.branchHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.2rem;
+}
+
+.branchStatusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #B8E986;
+}
+
+.branchCount {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: var(--fw-bold);
+  color: #E8EDE5;
+}
+
+.branchLabel {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: var(--fw-bold);
+  color: #FFFFFF;
+  margin: 0 0 0.2rem 0;
+}
+
+.branchDesc {
+  font-size: 0.7rem;
+  line-height: 1.4;
+  color: #A0B29F;
+  margin: 0;
+}
+
+.networkTelemetryBar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+  padding: 0.85rem 1rem;
+  background-color: rgba(22, 29, 24, 0.8);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(82, 116, 90, 0.2);
+}
+
+.telemetryMetric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.metricBig {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: var(--fw-heavy);
+  color: #B8E986;
+  line-height: 1;
+}
+
+.metricLabel {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: #A0B29F;
+  letter-spacing: var(--tracking-wide);
+  margin-top: 3px;
+}
+
+/* ==========================================================================
+   Scene 4: Systems Architecture Matrix
+   ========================================================================== */
+.systemsMatrixScene {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  box-shadow: 0 8px 30px rgba(37, 41, 34, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.matrixHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.matrixTitleWrap {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.matrixIcon {
+  font-size: 0.85rem;
+}
+
+.matrixCode {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-primary);
+}
+
+.matrixBadge {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--color-muted);
+}
+
+.matrixTiers {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+}
+
+@media (min-width: 600px) {
+  .matrixTiers {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.matrixTierCard {
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  transition: all var(--duration-fast);
+}
+
+.matrixTierCard:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(82, 116, 90, 0.08);
+}
+
+.tierHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tierTag {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: var(--fw-bold);
+  color: var(--color-primary);
+  letter-spacing: var(--tracking-wide);
+}
+
+.tierIdx {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  color: var(--color-muted);
+}
+
+.tierTitle {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  margin: 0;
+}
+
+.tierTools {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--color-muted);
+}
+
+.tierProjects {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+}
+
+.projectPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--color-text);
+  text-decoration: none;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-xs);
+  overflow-wrap: anywhere;
+  transition: all var(--duration-fast);
+}
+
+.projectPill:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.projectDot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+}
+
+.matrixFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.matrixNotice {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--color-muted);
+}
+
+.matrixWorkLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: var(--fw-bold);
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: transform var(--duration-fast);
+}
+
+.matrixWorkLink:hover {
+  text-decoration: underline;
+}
+
+.matrixArrow {
+  font-size: 0.75rem;
+}
+
+/* ==========================================================================
+   Mobile Responsive Refinements
+   ========================================================================== */
+@media (max-width: 640px) {
+  .conduitSpine {
+    left: 4px;
+  }
+
+  .waypointNode {
+    left: 4px;
+  }
+
+  .milestoneItem {
+    padding-left: 38px;
+  }
+
+  .milestoneContent,
+  .blueprintScene,
+  .mobileSandboxScene,
+  .networkScene,
+  .systemsMatrixScene {
+    padding: 1.05rem;
+  }
+
+  .locationPill {
+    margin-left: 0;
+  }
+
+  .networkTelemetryBar {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+}
+
+/* ==========================================================================
+   Reduced Motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .conduitSvg path,
+  .waypointBeacon,
+  .waypointPulse,
+  .hubPulseRing {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+:global([data-in-view="false"]) .waypointPulse,
+:global([data-in-view="false"]) .hubPulseRing {
+  animation-play-state: paused !important;
+}

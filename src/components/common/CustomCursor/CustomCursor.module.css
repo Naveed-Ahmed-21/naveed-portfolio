@@ -1,0 +1,91 @@
+.cursorWrapper {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.visible {
+  opacity: 1;
+}
+
+/* Precision Center Dot */
+.cursorDot {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  will-change: transform;
+  pointer-events: none;
+  box-shadow: 0 0 10px rgba(82, 116, 90, 0.6);
+}
+
+/* Smooth Trailing Spring Follower */
+.cursorFollower {
+  position: absolute;
+  top: -18px;
+  left: -18px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(82, 116, 90, 0.5);
+  background-color: rgba(82, 116, 90, 0.06);
+  backdrop-filter: blur(2px);
+  will-change: transform, width, height, border-radius;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    width 0.22s var(--ease-subtle),
+    height 0.22s var(--ease-subtle),
+    border-radius 0.22s var(--ease-subtle),
+    background-color 0.22s var(--ease-subtle),
+    border-color 0.22s var(--ease-subtle);
+}
+
+/* Hovering Standard Clickables */
+.followerPointer {
+  width: 52px;
+  height: 52px;
+  top: -26px;
+  left: -26px;
+  border-color: var(--color-primary);
+  background-color: rgba(82, 116, 90, 0.16);
+}
+
+/* Contextual Text Badge (e.g. "VIEW", "EXPLORE") */
+.followerWithText {
+  width: auto;
+  min-width: 76px;
+  height: 32px;
+  top: -16px;
+  left: -38px;
+  padding-inline: 14px;
+  border-radius: 9999px;
+  background-color: var(--color-text);
+  border: 1px solid var(--color-primary);
+  box-shadow: 0 8px 24px rgba(37, 41, 34, 0.25);
+}
+
+.cursorLabel {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-background);
+  white-space: nowrap;
+}
+
+@media (pointer: coarse) {
+  .cursorWrapper {
+    display: none !important;
+  }
+}
+

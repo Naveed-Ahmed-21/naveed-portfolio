@@ -1,0 +1,97 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  border-radius: var(--radius-full);
+  font-family: var(--font-sans);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tracking-snug);
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform var(--duration-fast) var(--ease-standard),
+    background-color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard),
+    box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+.label {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* Sizes */
+.sm {
+  padding: 0.5rem 1.1rem;
+  font-size: var(--text-xs);
+}
+
+.md {
+  padding: 0.75rem 1.65rem;
+  font-size: var(--text-sm);
+}
+
+.lg {
+  padding: 1rem 2.2rem;
+  font-size: var(--text-base);
+}
+
+/* Primary: Forest Dark base with warm sand / ivory text */
+.primary {
+  background-color: var(--color-forest-dark);
+  color: var(--color-ivory);
+  border: 1px solid var(--color-forest-dark);
+}
+
+.primary:hover {
+  background-color: var(--color-evergreen);
+  border-color: var(--color-evergreen);
+  box-shadow: var(--shadow-forest);
+  transform: translateY(-2px);
+}
+
+/* Secondary: Sage base */
+.secondary {
+  background-color: var(--color-sage);
+  color: var(--color-white);
+  border: 1px solid var(--color-sage);
+}
+
+.secondary:hover {
+  background-color: var(--color-evergreen);
+  border-color: var(--color-evergreen);
+  transform: translateY(-2px);
+}
+
+/* Outline: Subtle forest stroke */
+.outline {
+  background-color: transparent;
+  color: var(--color-forest-dark);
+  border: 1px solid var(--color-forest-dark-20);
+}
+
+.outline:hover {
+  background-color: var(--color-moss-light);
+  border-color: var(--color-forest-dark);
+  transform: translateY(-2px);
+}
+
+/* Ghost */
+.ghost {
+  background-color: transparent;
+  color: var(--text-secondary);
+  border: 1px solid transparent;
+}
+
+.ghost:hover {
+  color: var(--color-forest-dark);
+  background-color: var(--color-forest-dark-05);
+}
+

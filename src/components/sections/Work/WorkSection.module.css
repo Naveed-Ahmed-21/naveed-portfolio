@@ -1,0 +1,204 @@
+.workSection {
+  position: relative;
+  width: 100%;
+  padding-top: clamp(1.5rem, 3vw, 2.5rem);
+  padding-bottom: clamp(2rem, 3.5vw, 3rem);
+  background-color: var(--bg-primary);
+}
+
+.headerRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.sectionHeaderReset {
+  margin-bottom: 0;
+}
+
+@media (min-width: 860px) {
+  .headerRow {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+.metaIndicators {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: 0.25rem;
+}
+
+.indicatorPill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.75rem;
+  background-color: var(--color-moss-light);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-forest-dark);
+  text-transform: uppercase;
+}
+
+/* Sub-divider for archive projects */
+.subDivider {
+  margin-top: clamp(2rem, 3.5vw, 3rem);
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+@media (min-width: 768px) {
+  .subDivider {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+.subHeadingWrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.subEyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-olive-muted);
+}
+
+.subHeading {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--fw-bold);
+  color: var(--color-forest-dark);
+  margin: 0;
+  letter-spacing: var(--tracking-tight);
+}
+
+.subDesc {
+  font-size: var(--text-sm);
+  color: var(--color-olive-muted);
+  max-width: 480px;
+  line-height: var(--lh-normal);
+}
+
+/* Secondary Grid */
+.secondaryGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 640px) {
+  .secondaryGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1040px) {
+  .secondaryGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ==========================================================================
+   Restrained Continuity Bridge: Work ➔ The Craft Lab
+   ========================================================================== */
+.craftBridgeConduit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-top: clamp(1.75rem, 3.5vw, 2.75rem);
+  padding-bottom: clamp(0.5rem, 1.5vw, 1rem);
+  width: 100%;
+}
+
+.conduitLine {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(82, 116, 90, 0.25) 50%, rgba(82, 116, 90, 0.4) 100%);
+}
+
+.conduitLine:last-child {
+  background: linear-gradient(90deg, rgba(82, 116, 90, 0.4) 0%, rgba(82, 116, 90, 0.25) 50%, transparent 100%);
+}
+
+.conduitBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: var(--radius-full);
+  background-color: var(--color-white);
+  border: 1px solid var(--border-subtle);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-forest-dark);
+  box-shadow: 0 4px 16px rgba(37, 41, 34, 0.04);
+  transition: all var(--duration-fast) var(--ease-subtle);
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+@media (max-width: 640px) {
+  .conduitLine {
+    display: none;
+  }
+
+  .conduitBadge {
+    white-space: normal;
+    text-align: center;
+    line-height: 1.35;
+    padding: 0.55rem 0.95rem;
+  }
+}
+
+.conduitBadge:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(82, 116, 90, 0.15);
+}
+
+.conduitPulseDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  box-shadow: 0 0 6px rgba(82, 116, 90, 0.6);
+}
+
+.conduitText {
+  letter-spacing: var(--tracking-wide);
+}
+
+.conduitArrow {
+  font-size: 0.8rem;
+  transition: transform var(--duration-fast);
+}
+
+.conduitBadge:hover .conduitArrow {
+  transform: translateY(3px);
+}
+
+

@@ -1,0 +1,133 @@
+.introOverlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #121511;
+  color: #f5f3ed;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  pointer-events: all;
+  will-change: transform;
+}
+
+.introContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+  padding: 2rem;
+  max-width: 600px;
+}
+
+.brandRow {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.monogram {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  min-height: 42px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  flex-shrink: 0;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.monogramText {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  color: #f5f3ed;
+  text-align: center;
+  white-space: nowrap;
+  user-select: none;
+  display: block;
+}
+
+.editionTag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #d9bfa3;
+}
+
+.counterWrap {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  font-family: var(--font-display);
+  line-height: 0.9;
+}
+
+.counterNumber {
+  font-size: clamp(5rem, 16vw, 10rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: #ffffff;
+  font-feature-settings: 'tnum' 1;
+}
+
+.counterPercent {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 600;
+  color: #52745a;
+  margin-left: 0.25rem;
+}
+
+.taglineRow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.taglineDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #52745a;
+  box-shadow: 0 0 10px rgba(82, 116, 90, 0.8);
+}
+
+.taglineText {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(245, 243, 237, 0.6);
+}
+
+.progressBarTrack {
+  width: min(280px, 75vw);
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+.progressBarFill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #52745a 0%, #d9bfa3 100%);
+  transition: width 0.05s linear;
+}
+
